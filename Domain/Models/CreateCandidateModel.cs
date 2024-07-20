@@ -1,10 +1,10 @@
 ﻿namespace Domain.Models;
 
 public record CreateCandidateModel(
-    string FirstName,
-    string LastName,
-    string Email,
-    string Comment,
+    string? FirstName = null,
+    string? LastName = null,
+    string? Email = null,
+    string? Comment = null,
     string? PhoneNumber = null,
     DateTime? StartCallTimeInterval = null,
     DateTime? EndCallTimeInterval = null,
