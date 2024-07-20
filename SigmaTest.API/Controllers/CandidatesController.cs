@@ -1,9 +1,13 @@
-﻿using ApplicationCore.Candidates.Commands;
+﻿using ApplicationCore;
+using ApplicationCore.Candidates.Commands;
+using ApplicationCore.Candidates.Queries;
 using Domain;
 using Domain.Models;
 using FluentValidation;
+using FluentValidation.Results;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Text;
 
 namespace SigmaTest.API.Controllers;
 
@@ -12,22 +16,28 @@ namespace SigmaTest.API.Controllers;
 public class CandidatesController : ControllerBase
 {
 	private readonly IMediator _mediator;
-	private readonly IValidator<UpsertCandidateCmd> _validator;
 
-    public CandidatesController(IMediator mediator, IValidator<UpsertCandidateCmd> validator)
+    public CandidatesController(IMediator mediator)
     {
         _mediator = mediator;
-        _validator = validator;
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Candidate>>> GetAllCandidates(CancellationToken cancellationToken = default)
+    {
+        var result = await _mediator.Send(new GetAllCandidatesQuery(), cancellationToken);
+        return Ok(result);
     }
 
     [HttpPost]
-    public async Task<ActionResult<Candidate>> UpsertCandidate([FromBody] CreateCandidateModel candidate, CancellationToken cancellationToken)
+    public async Task<ActionResult<Candidate>> UpsertCandidate([FromBody] CreateCandidateModel candidate, CancellationToken cancellationToken = default)
     {
 		var cmd = new UpsertCandidateCmd { model = candidate };
-		var validation = _validator.Validate(cmd);
-		if (!validation.IsValid)
+        UpsertCandidateValidator validator = new();
+        var validationResult = validator.Validate(cmd);
+        if (!validationResult.IsValid)
 		{
-			return BadRequest(validation.ToString());
+            return BadRequest(validationResult.ToString("\n"));
 		}
 
         var result = await _mediator.Send(cmd, cancellationToken);

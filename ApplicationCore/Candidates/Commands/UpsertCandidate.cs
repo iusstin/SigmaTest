@@ -3,11 +3,14 @@ using Domain;
 using Domain.Interfaces;
 using Domain.Models;
 using MediatR;
+using System.Runtime.Serialization;
 
 namespace ApplicationCore.Candidates.Commands;
 
+[DataContract]
 public class UpsertCandidateCmd : BaseCommand<Candidate>
 {
+    [DataMember]
     public CreateCandidateModel model { get; set; }
 }
 
@@ -43,14 +46,14 @@ public class UpsertCandidateCmdHandler : BaseCommandHandler<UpsertCandidateCmd, 
             return newCandidate;
         }
 
-        existingCandidate.FirstName = cmd.model.FirstName ?? existingCandidate.FirstName;
-        existingCandidate.LastName = cmd.model.LastName ?? existingCandidate.LastName;
-        existingCandidate.PhoneNumber = cmd.model.PhoneNumber ?? existingCandidate.PhoneNumber;
-        existingCandidate.LinkedInProfile = cmd.model.LinkedInProfile ?? existingCandidate.LinkedInProfile;
-        existingCandidate.GitHubProfile = cmd.model.GitHubProfile ?? existingCandidate.GitHubProfile;
-        existingCandidate.Comment = cmd.model.Comment ?? existingCandidate.Comment;
-        existingCandidate.StartCallTimeInterval = cmd.model.StartCallTimeInterval ?? existingCandidate.StartCallTimeInterval;
-        existingCandidate.EndCallTimeIntervall = cmd.model.EndCallTimeInterval ?? existingCandidate.EndCallTimeIntervall;
+        existingCandidate.FirstName = cmd.model.FirstName;
+        existingCandidate.LastName = cmd.model.LastName;
+        existingCandidate.PhoneNumber = cmd.model.PhoneNumber;
+        existingCandidate.LinkedInProfile = cmd.model.LinkedInProfile;
+        existingCandidate.GitHubProfile = cmd.model.GitHubProfile;
+        existingCandidate.Comment = cmd.model.Comment;
+        existingCandidate.StartCallTimeInterval = cmd.model.StartCallTimeInterval;
+        existingCandidate.EndCallTimeIntervall = cmd.model.EndCallTimeInterval;
 
         await _candidateRepository.UpdateCandidate(existingCandidate, cancellationToken);
         return existingCandidate;
