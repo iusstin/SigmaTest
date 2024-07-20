@@ -12,6 +12,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(dbconnection, builder => builder.EnableRetryOnFailure()));
 
 builder.Services.AddScoped<IAppDbContext>(provider => provider.GetRequiredService<AppDbContext>());
+builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
