@@ -12,16 +12,16 @@ public class CandidateRepository : ICandidateRepository
     public CandidateRepository(IAppDbContext dbContext) 
         => _dbContext = dbContext;
 
-    public async Task<long?> AddCandidate(Candidate candidate, CancellationToken cancellationToken)
+    public async Task<Candidate?> CreateCandidate(Candidate candidate, CancellationToken cancellationToken)
     {
         await _dbContext.Candidates.AddAsync(candidate, cancellationToken);
         await _dbContext.SaveChangesAsync(cancellationToken);
-        return candidate.Id;
+        return candidate;
     }
 
-    public async Task<Candidate?> Get(long id)
+    public async Task<Candidate?> GetByEmail(string email)
     {
-        var candidate = await _dbContext.Candidates.FirstOrDefaultAsync(x => x.Id == id);
+        var candidate = await _dbContext.Candidates.FirstOrDefaultAsync(x => x.Email == email);
         return candidate;
     }
 

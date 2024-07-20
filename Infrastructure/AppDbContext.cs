@@ -23,6 +23,10 @@ public class AppDbContext : DbContext, IAppDbContext
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
+
+        builder.Entity<Candidate>()
+            .HasIndex(c => c.Email)
+            .IsUnique();
     }
 
     public async Task<int> SaveChangesAsync()
