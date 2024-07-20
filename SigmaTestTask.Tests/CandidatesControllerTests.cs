@@ -51,6 +51,8 @@ public class CandidatesControllerTests
         var result = Assert.IsType<OkObjectResult>(response.Result);
         var candidate = Assert.IsType<Candidate>(result.Value);
         Assert.Equal(model.Email, candidate.Email);
+        Assert.Equal(model.FirstName, candidate.FirstName);
+        Assert.Equal(model.LastName, candidate.LastName);
     }
 
     [Fact]
