@@ -1,3 +1,5 @@
+Before running the app, apply the migrations to update the database.
+
 Caching: 
 - may be applied on saving the list of candidates
 - in ApplicationCore when querying the list of candidates, we might save it in cache
