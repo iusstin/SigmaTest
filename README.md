@@ -1,3 +1,5 @@
+Test task for a job application
+
 Before running the app, apply the migrations to update the database.
 
 Caching: 
