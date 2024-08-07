@@ -6,6 +6,17 @@ using ApplicationCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var CorsAllowedOrigins = "_CORSAllowedOrigins";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: CorsAllowedOrigins,
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:4200");
+            builder.AllowAnyHeader();
+            builder.AllowAnyMethod();
+        });
+});
 
 var dbconnection = builder.Configuration.GetConnectionString("AppDbContext");
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -23,12 +34,22 @@ builder.Services.AddApplicationCore();
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    dbContext.Database.Migrate();
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseRouting();
+
+app.UseCors(CorsAllowedOrigins);
 
 app.UseHttpsRedirection();
 

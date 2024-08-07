@@ -3,11 +3,8 @@ using ApplicationCore.Candidates.Commands;
 using ApplicationCore.Candidates.Queries;
 using Domain;
 using Domain.Models;
-using FluentValidation;
-using FluentValidation.Results;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Text;
 
 namespace SigmaTest.API.Controllers;
 

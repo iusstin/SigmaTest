@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SigmaTest.API", "SigmaTest.API.csproj", "{B12DC7B2-8715-4BCF-8EA1-9C94B7AA4396}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SigmaTest.API", "SigmaTest.API.csproj", "{B12DC7B2-8715-4BCF-8EA1-9C94B7AA4396}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationCore", "..\ApplicationCore\ApplicationCore.csproj", "{3DAD98FE-CA54-4C40-B2E7-5F6941ED6DA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationCore", "..\ApplicationCore\ApplicationCore.csproj", "{3DAD98FE-CA54-4C40-B2E7-5F6941ED6DA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "..\Domain\Domain.csproj", "{7FC21603-F6A4-4AC5-A611-116D5353ECC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "..\Domain\Domain.csproj", "{7FC21603-F6A4-4AC5-A611-116D5353ECC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "..\Infrastructure\Infrastructure.csproj", "{A5C985C0-C5F6-4C70-9DF9-45533D289F24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "..\Infrastructure\Infrastructure.csproj", "{A5C985C0-C5F6-4C70-9DF9-45533D289F24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SigmaTestTask.Tests", "..\SigmaTestTask.Tests\SigmaTestTask.Tests.csproj", "{00F08C1E-86D8-4C1A-AF71-A00F5856088F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SigmaTestTask.Tests", "..\SigmaTestTask.Tests\SigmaTestTask.Tests.csproj", "{00F08C1E-86D8-4C1A-AF71-A00F5856088F}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "ClientApp", "..\ClientApp\ClientApp.esproj", "{ADE3C3B1-F8DA-4495-94F4-06F0B540802E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,12 @@ Global
 		{00F08C1E-86D8-4C1A-AF71-A00F5856088F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00F08C1E-86D8-4C1A-AF71-A00F5856088F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00F08C1E-86D8-4C1A-AF71-A00F5856088F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADE3C3B1-F8DA-4495-94F4-06F0B540802E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADE3C3B1-F8DA-4495-94F4-06F0B540802E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADE3C3B1-F8DA-4495-94F4-06F0B540802E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{ADE3C3B1-F8DA-4495-94F4-06F0B540802E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADE3C3B1-F8DA-4495-94F4-06F0B540802E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADE3C3B1-F8DA-4495-94F4-06F0B540802E}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
