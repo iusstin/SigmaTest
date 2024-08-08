@@ -37,9 +37,14 @@ jobs:
           cd ClientApp
           npm run build --prod
       
-      - name: Verify Node.js Version after angular built
-        run: node -v
-        
+      - name: List Build Directory
+        run: |
+          cd ClientApp
+          ls -R ./dist
+      - name: Log Angular Output Path
+        run: |
+          cat ClientApp/angular.json | grep outputPath
+          
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
