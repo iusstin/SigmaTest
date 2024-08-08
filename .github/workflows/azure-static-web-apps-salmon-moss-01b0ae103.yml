@@ -1,4 +1,4 @@
-name: Azure Static Web Apps CI/CD
+name: Client App - Azure Static Web Apps CI/CD
 
 on:
   push:
@@ -19,6 +19,22 @@ jobs:
         with:
           submodules: true
           lfs: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18.x'
+
+      - name: Install dependencies
+        run: |
+          cd Travel-Planner.FE
+          npm install && npm run build --prod
+
+      - name: Build the Angular app
+        run: |
+          cd Travel-Planner.FE
+          npm run build --prod
+      
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -29,8 +45,8 @@ jobs:
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: "./ClientApp" # App source code path
-          api_location: "" # Api source code path - optional
-          output_location: "angular.json#$.projects[*].architect.build.options.outputPath" # Built app content directory - optional
+          api_location: "./SigmaTest.API" # Api source code path - optional
+          output_location: "./ClientApp/dist/client-app/browser" # "angular.json#$.projects[*].architect.build.options.outputPath" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
