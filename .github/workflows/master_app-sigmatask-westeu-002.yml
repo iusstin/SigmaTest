@@ -33,6 +33,10 @@ jobs:
           name: .net-app
           path: ./publish
 
+      - name: List publish contents
+        run: |
+          ls -al ./publish
+
   deploy:
     runs-on: windows-latest
     needs: build
