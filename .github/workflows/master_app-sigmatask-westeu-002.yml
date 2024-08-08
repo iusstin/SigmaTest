@@ -51,7 +51,7 @@ jobs:
 
       - name: List downloaded artifact contents
         run: |
-          ls -al ${{ github.workspace }}
+          ls ${{ github.workspace }}
       
       - name: Login to Azure
         uses: azure/login@v2
