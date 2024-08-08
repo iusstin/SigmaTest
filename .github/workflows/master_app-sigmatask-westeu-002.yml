@@ -35,7 +35,7 @@ jobs:
 
       - name: List publish contents
         run: |
-          ls -al ./publish
+          ls ./publish
 
   deploy:
     runs-on: windows-latest
