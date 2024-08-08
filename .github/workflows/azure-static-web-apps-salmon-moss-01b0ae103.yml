@@ -27,12 +27,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd Travel-Planner.FE
+          cd ClientApp
           npm install && npm run build --prod
 
       - name: Build the Angular app
         run: |
-          cd Travel-Planner.FE
+          cd ClientApp
           npm run build --prod
       
       - name: Build And Deploy
