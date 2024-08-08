@@ -59,11 +59,7 @@ jobs:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_10E8E4C4357F4EA6AEA4CAB5CEDDACD1 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_D765A4801B4E4E70A7897432AB012501 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_56FC2B0B7CDF45FF91CC51CF4586501E }}
-
-      - name: List .net-app contents
-        run: |
-          ls .net-app
-
+      
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
