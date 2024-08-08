@@ -12,7 +12,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: CorsAllowedOrigins,
         builder =>
         {
-            builder.WithOrigins("http://localhost:4200");
+            builder.WithOrigins("https://salmon-moss-01b0ae103.5.azurestaticapps.net"); //http://localhost:4200
             builder.AllowAnyHeader();
             builder.AllowAnyMethod();
         });

@@ -8,7 +8,8 @@ import { Candidate } from "./candidate";
 })
 
 export class CandidateService {
-  private url = "https://localhost:7043/api/candidates"
+  private localurl = "https://localhost:7043/api/candidates"
+  private url = "https://app-sigmatask-westeu-002-hxgzdzdyayb0e0bd.westeurope-01.azurewebsites.net/api/candidates"
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type':'application/json'})
