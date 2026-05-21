@@ -10,13 +10,14 @@ namespace SigmaTest.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class CandidatesController(IMediator mediator) : ControllerBase
+public class CandidatesController(IMediator mediator, ILogger<CandidatesController> logger) : ControllerBase
 {
 
   [HttpGet]
     public async Task<ActionResult<IEnumerable<Candidate>>> GetAllCandidates(CancellationToken cancellationToken = default)
     {
         var result = await mediator.Send(new GetAllCandidatesQuery(), cancellationToken);
+        logger.LogInformation("Retrieved {Count} candidates", result.Count());
         return Ok(result);
     }
 
@@ -28,11 +29,13 @@ public class CandidatesController(IMediator mediator) : ControllerBase
         var validationResult = validator.Validate(cmd);
         if (!validationResult.IsValid)
 		{
+            logger.LogWarning("Validation failed for candidate upsert: {Errors}", validationResult.Errors);
             return BadRequest(validationResult.ToString("\n"));
 		}
 
         var result = await mediator.Send(cmd, cancellationToken);
-		return Ok(result);
+		logger.LogInformation("Upserted candidate with ID {Id}", result.Id);
+        return Ok(result);
     }
 
     [HttpGet("test")]
