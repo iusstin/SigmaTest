@@ -10,16 +10,11 @@ namespace SigmaTest.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class CandidatesController : ControllerBase
+public class CandidatesController(IMediator mediator) : ControllerBase
 {
-	private readonly IMediator _mediator;
+	private readonly IMediator _mediator = mediator;
 
-    public CandidatesController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
-
-    [HttpGet]
+  [HttpGet]
     public async Task<ActionResult<IEnumerable<Candidate>>> GetAllCandidates(CancellationToken cancellationToken = default)
     {
         var result = await _mediator.Send(new GetAllCandidatesQuery(), cancellationToken);
