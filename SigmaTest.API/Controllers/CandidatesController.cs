@@ -34,4 +34,10 @@ public class CandidatesController(IMediator mediator) : ControllerBase
         var result = await mediator.Send(cmd, cancellationToken);
 		return Ok(result);
     }
+
+    [HttpGet("test")]
+    public ActionResult<string> Test()
+    {
+        return Ok("API is working!");
+    }
 }
