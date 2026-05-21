@@ -28,7 +28,8 @@ public class CandidatesController(IMediator mediator, ILogger<CandidatesControll
         UpsertCandidateValidator validator = new();
         var validationResult = validator.Validate(cmd);
         if (!validationResult.IsValid)
-		{
+        {
+            logger.LogInformation($"Validation failed {validationResult.ToString()}");
             return BadRequest(validationResult.ToString("\n"));
 		}
 
