@@ -36,4 +36,11 @@ public class CandidatesController(IMediator mediator, ILogger<CandidatesControll
         var result = await mediator.Send(cmd, cancellationToken);
 		return Ok(result);
     }
+
+    [HttpGet("test")]
+    public ActionResult<string> Test()
+    {
+        logger.LogInformation("Test endpoint hit");
+        return Ok("Test successful");
+    }
 }
